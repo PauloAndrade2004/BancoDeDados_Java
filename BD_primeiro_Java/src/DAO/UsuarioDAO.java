@@ -10,9 +10,7 @@ public class UsuarioDAO {
 
     //criando metodo de insertion de dados.
     public void cadastrarUsuario(Aluno aluno) {
-
         // Comandos de inserção de dados.
-
         // Escrever um comando SQL.
         String sql = "INSERT INTO aluno (idaluno, nome, login, senha, email) VALUES (?, ?, ?, ?, ?)";
         // Os pontos de ? representam os valores que eu vou mandar por parâmetros.
@@ -41,6 +39,26 @@ public class UsuarioDAO {
         }
 
 
+
+    }
+
+
+    public static void deletarAluno(int idAluno) {
+        String sql = "DELETE FROM aluno WHERE idAluno = ?";
+        PreparedStatement pss = null;
+
+        try {
+            pss = Conexao.getConnection(). prepareStatement(sql);
+
+            pss.setInt(1, idAluno);
+
+
+            pss.executeUpdate();
+            pss.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
